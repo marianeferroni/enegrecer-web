@@ -63,10 +63,6 @@ export default class NewComplaintForm extends Component {
         <label htmlFor="longitude">Longitude:</label>
         {this.renderTextField('longitude')}
         <br />
-
-        <button type="submit" id="btn-salvar-denuncia">
-              Salvar
-        </button>
       </form>);
   }
 }
