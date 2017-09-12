@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
+import NovaVitimaForm from '../pessoas/vitima/NovaVitimaForm';
 
 export default class NewComplaintForm extends Component {
   constructor(props) {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       report: '',
@@ -19,7 +21,9 @@ export default class NewComplaintForm extends Component {
   }
 
   handleChange(event, property) {
-    this.setState({ [property]: event.target.value });
+    this.setState({
+      ...this.state,
+      [property]: event.target.value });
   }
 
   handleSubmit() {
@@ -63,6 +67,12 @@ export default class NewComplaintForm extends Component {
         <label htmlFor="longitude">Longitude:</label>
         {this.renderTextField('longitude')}
         <br />
+
+        <NovaVitimaForm salvarDenuncia={this.handleChange} />
+
+        <button type="submit" id="btn-salvar-denuncia">
+          Salvar
+        </button>
       </form>);
   }
 }

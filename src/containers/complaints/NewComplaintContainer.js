@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { requestCreateComplaint } from '../../actions';
 import NewComplaintForm from '../../components/complaints/NewComplaintForm';
-import NovaPessoaForm from '../../components/pessoas/NovaPessoaForm';
 
 export class NewComplaintContainer extends Component {
   constructor(props) {
@@ -25,7 +24,6 @@ export class NewComplaintContainer extends Component {
     return (
       <div>
         <NewComplaintForm salvarDenuncia={this.onPressSaveButton} />
-        <NovaPessoaForm salvarDenuncia={this.onPressSaveButton} />
       </div>
     );
   }

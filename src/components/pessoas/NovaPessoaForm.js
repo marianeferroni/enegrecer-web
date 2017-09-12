@@ -7,7 +7,8 @@ export default class NovaPessoaForm extends Component {
   constructor(props) {
     super(props);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
 
     this.state = {
       pessoaIdentificada: 'nao',
@@ -17,21 +18,23 @@ export default class NovaPessoaForm extends Component {
       tipo: '',
       informacoesComplementares: '',
       dataNascimento: '',
+      descricao: '',
     };
   }
 
-  handleChange(event, property) {
-    this.setState({ [property]: event.target.value });
-  }
-
-  handleSubmit() {
+  handleChange(newValue, property) {
+    this.setState({
+      ...this.state,
+      [property]: newValue });
     this.props.salvarDenuncia(this.state);
   }
 
   handleOptionChange(changeEvent) {
     this.setState({
+      ...this.state,
       pessoaIdentificada: changeEvent.target.value,
     });
+    this.props.salvarDenuncia(this.state);
   }
 
   renderTextField(name) {
@@ -39,7 +42,7 @@ export default class NovaPessoaForm extends Component {
       <TextField
         id={name}
         value={this.state[name]}
-        onChange={event => this.handleChange(event, name)}
+        onChange={(event,newValue) => this.handleChange(newValue, name)}
       />
     );
   }
@@ -56,9 +59,9 @@ export default class NovaPessoaForm extends Component {
   }
   render() {
     return (
-      <form id="form-nova-pessoa" onSubmit={this.handleSubmit}>
-        <label htmlFor="pessoaIdentificada">Pessoa Identificada:</label>
-        <RadioButtonGroup name="identificacao" defaultSelected="nao">
+      <div>
+        <label htmlFor="vitimaIdentificada">Vitima Identificada:</label>
+        <RadioButtonGroup name="identificacaoVitima" defaultSelected="nao">
           {this.renderRadioButton('sim')}
           {this.renderRadioButton('nao')}
         </RadioButtonGroup>
@@ -84,10 +87,10 @@ export default class NovaPessoaForm extends Component {
         {this.renderTextField('dataNascimento')}
         <br />
 
-        <button type="submit" id="btn-salvar-denuncia">
-          Salvar
-        </button>
-      </form>);
+        <label htmlFor="descricao">Descrição:</label>
+        {this.renderTextField('descricao')}
+        <br />
+      </div>);
   }
 }
 
