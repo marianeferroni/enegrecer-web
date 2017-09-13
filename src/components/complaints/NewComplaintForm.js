@@ -9,6 +9,7 @@ export default class NewComplaintForm extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.adicionarVitimaEmForm = this.adicionarVitimaEmForm.bind(this);
 
     this.state = {
       report: '',
@@ -24,6 +25,13 @@ export default class NewComplaintForm extends Component {
     this.setState({
       ...this.state,
       [property]: event.target.value });
+  }
+
+  adicionarVitimaEmForm(state) {
+    this.setState({
+      ...this.state,
+      vitima: state,
+    });
   }
 
   handleSubmit() {
@@ -68,7 +76,7 @@ export default class NewComplaintForm extends Component {
         {this.renderTextField('longitude')}
         <br />
 
-        <NovaVitimaForm salvarDenuncia={this.handleChange} />
+        <NovaVitimaForm alterarVitimaForm={this.adicionarVitimaEmForm} />
 
         <button type="submit" id="btn-salvar-denuncia">
           Salvar

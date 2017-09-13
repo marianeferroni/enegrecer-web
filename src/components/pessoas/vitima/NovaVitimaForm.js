@@ -7,7 +7,7 @@ export default class NovaVitimaForm extends Component {
   constructor(props) {
     super(props);
 
-    this.handleChange = this.handleChange.bind(this);
+    this.adicionarPessoaEmVitimaForm = this.adicionarPessoaEmVitimaForm.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
 
     this.state = {
@@ -15,17 +15,19 @@ export default class NovaVitimaForm extends Component {
     };
   }
 
-  handleChange(event, property) {
+  adicionarPessoaEmVitimaForm(state) {
     this.setState({
       ...this.state,
-      [property]: event.target.value });
-    this.props.salvarDenuncia(this.state);
+      pessoa: state });
+    this.props.alterarVitimaForm(this.state);
   }
 
   handleOptionChange(changeEvent, isInputChecked) {
     this.setState({
+      ...this.state,
       souVitima: isInputChecked,
     });
+    this.props.alterarVitimaForm(this.state);
   }
 
   render() {
@@ -37,11 +39,11 @@ export default class NovaVitimaForm extends Component {
           onCheck={this.handleOptionChange}
         />
 
-        <NovaPessoaForm salvarDenuncia={this.handleChange} />
+        <NovaPessoaForm alterarPessoaForm={this.adicionarPessoaEmVitimaForm} />
       </div>);
   }
 }
 
 NovaVitimaForm.propTypes = {
-  salvarDenuncia: PropTypes.func.isRequired,
+  alterarVitimaForm: PropTypes.func.isRequired,
 };

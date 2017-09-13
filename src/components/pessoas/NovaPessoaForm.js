@@ -22,11 +22,11 @@ export default class NovaPessoaForm extends Component {
     };
   }
 
-  handleChange(newValue, property) {
+  handleChange(event, property) {
     this.setState({
       ...this.state,
-      [property]: newValue });
-    this.props.salvarDenuncia(this.state);
+      [property]: event.target.value });
+    this.props.alterarPessoaForm(this.state);
   }
 
   handleOptionChange(changeEvent) {
@@ -34,7 +34,7 @@ export default class NovaPessoaForm extends Component {
       ...this.state,
       pessoaIdentificada: changeEvent.target.value,
     });
-    this.props.salvarDenuncia(this.state);
+    this.props.alterarPessoaForm(this.state);
   }
 
   renderTextField(name) {
@@ -42,7 +42,7 @@ export default class NovaPessoaForm extends Component {
       <TextField
         id={name}
         value={this.state[name]}
-        onChange={(event,newValue) => this.handleChange(newValue, name)}
+        onChange={event => this.handleChange(event, name)}
       />
     );
   }
@@ -95,5 +95,5 @@ export default class NovaPessoaForm extends Component {
 }
 
 NovaPessoaForm.propTypes = {
-  salvarDenuncia: PropTypes.func.isRequired,
+  alterarPessoaForm: PropTypes.func.isRequired,
 };
