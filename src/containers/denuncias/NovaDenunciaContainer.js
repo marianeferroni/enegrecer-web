@@ -18,7 +18,6 @@ export class NovaDenunciaContainer extends Component {
       denunciante: this.props.denunciante,
       onSuccess: push('/painel'),
     });
-    console.log(state);
   }
 
   render() {
