@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import HomePage from './home/Home';
-import Login from './login/Login';
+import Login from '../containers/login/LoginContainer';
 import Painel from './layouts/Painel';
 import NovaDenuncia from '../containers/denuncias/NovaDenunciaContainer';
 
